@@ -16,7 +16,7 @@ BuildArchitectures: noarch
 BuildRequires: e-smith-devtools
 Requires: e-smith-release >= 8.0
 Requires: VirtualBox-4.3
-Patch0: smeserver-virtualbox-4.3.1_fix_vboxdrv_kernel_module.patch
+#Patch0: smeserver-virtualbox-4.3.1_fix_vboxdrv_kernel_module.patch
 AutoReqProv: no
 
 %description
@@ -37,7 +37,7 @@ smserver rpm to install virtualbox
 
 %prep
 %setup
-%patch0 -p1
+#%patch0 -p1
 %build
 
 %install
