@@ -1,7 +1,7 @@
 %define name smeserver-virtualbox
-%define version 4.3.1
-%define release 2
-%define rpmver   4.3.1
+%define version 5.0.0
+%define release 1
+%define rpmver   5.0.0
 Summary: smserver rpm to install virtualbox
 Name: %{name}
 Version: %{version}
@@ -15,7 +15,7 @@ Prefix: %{_prefix}
 BuildArchitectures: noarch
 BuildRequires: e-smith-devtools
 Requires: e-smith-release >= 8.0
-Requires: VirtualBox-4.3
+Requires: VirtualBox-5.0
 #Patch0: smeserver-virtualbox-4.3.1_fix_vboxdrv_kernel_module.patch
 AutoReqProv: no
 
@@ -23,8 +23,8 @@ AutoReqProv: no
 smserver rpm to install virtualbox
 
 %changelog
-* Sun May 18 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.3.1-2
-- add a force to link service creation
+* Thu Aug 06 2015 stephane de labrusse <stephdl@de-labrusse.fr> 5.0.0-1
+- require virtualbox-5.0
 
 * Wed Mar 19 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.3.1-1
 - added a script to verify if the vboxdrv module is compiled for the kernel used by the system
