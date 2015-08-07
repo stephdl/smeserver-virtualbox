@@ -70,8 +70,8 @@ if [ $1 > 1 ] ; then
 /bin/ln -fs /etc/rc.d/init.d/vboxweb-service /etc/rc7.d/S86vboxweb-service >/dev/null 2>&1
 /bin/ln -fs /etc/rc.d/init.d/fix_vboxdrv_kernel_module /etc/rc7.d/S19fix_vboxdrv_kernel_module >/dev/null 2>&1
 fi
-/usr/bin/vboxmanage setproperty websrvauthlibrary null
 /etc/init.d/vboxdrv start >/dev/null 2>&1
+/usr/bin/vboxmanage setproperty websrvauthlibrary null
 
 %postun
 #uninstall
