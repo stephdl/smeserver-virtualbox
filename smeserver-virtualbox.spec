@@ -58,17 +58,21 @@ cd ..
 rm -rf %{name}-%{version}
 
 %pre
+/etc/init.d/vboxdrv stop >/dev/null 2>&1
+
 %preun
 
 %post
 if [ $1 > 1 ] ; then
 /bin/ln -fs /etc/rc.d/init.d/vboxdrv /etc/rc7.d/S20vboxdrv >/dev/null 2>&1
-/bin/ln -fs /etc/rc.d/init.d/boxautostart-service /etc/rc7.d/S35vboxautostart-service >/dev/null 2>&1
+/bin/ln -fs /etc/rc.d/init.d/vboxautostart-service /etc/rc7.d/S35vboxautostart-service >/dev/null 2>&1
 /bin/ln -fs /etc/rc.d/init.d/vboxballoonctrl-service /etc/rc7.d/S35vboxballoonctrl-service >/dev/null 2>&1
 /bin/ln -fs /etc/rc.d/init.d/vboxweb-service /etc/rc7.d/S86vboxweb-service >/dev/null 2>&1
 /bin/ln -fs /etc/rc.d/init.d/fix_vboxdrv_kernel_module /etc/rc7.d/S19fix_vboxdrv_kernel_module >/dev/null 2>&1
 fi
 /usr/bin/vboxmanage setproperty websrvauthlibrary null
+/etc/init.d/vboxdrv start >/dev/null 2>&1
+
 %postun
 #uninstall
 if [ $1 = 0 ] ; then
