@@ -4,8 +4,8 @@
 use esmith::Build::CreateLinks qw(:all);
 
 # links for rc.d from init.d
-	service_link_enhanced("vboxweb-service", "S86", "7");
-	service_link_enhanced("vboxdrv", "S20", "7");
-        service_link_enhanced("vboxballoonctrl-service", "S35", "7");
-	service_link_enhanced("fix_vboxdrv_kernel_module", "S19", "7");
-	service_link_enhanced("vboxautostart-service", "S35", "7");
+#	service_link_enhanced("vboxweb-service", "S86", "7");
+#	service_link_enhanced("vboxdrv", "S20", "7");
+#        service_link_enhanced("vboxballoonctrl-service", "S35", "7");
+#	service_link_enhanced("fix_vboxdrv_kernel_module", "S19", "7");
+#	service_link_enhanced("vboxautostart-service", "S35", "7");
