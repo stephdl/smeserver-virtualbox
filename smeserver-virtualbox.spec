@@ -1,6 +1,6 @@
 %define name smeserver-virtualbox
 %define version 5.0.0
-%define release 1
+%define release 2
 %define rpmver   5.0.0
 Summary: smserver rpm to install virtualbox
 Name: %{name}
@@ -23,8 +23,9 @@ AutoReqProv: no
 smserver rpm to install virtualbox
 
 %changelog
-* Thu Aug 06 2015 stephane de labrusse <stephdl@de-labrusse.fr> 5.0.0-1
+* Thu Aug 06 2015 stephane de labrusse <stephdl@de-labrusse.fr> 5.0.0-2
 - require virtualbox-5.0
+- service links are now in createlinks
 
 * Wed Mar 19 2014 stephane de labrusse <stephdl@de-labrusse.fr> 4.3.1-1
 - added a script to verify if the vboxdrv module is compiled for the kernel used by the system
@@ -42,6 +43,7 @@ smserver rpm to install virtualbox
 %setup
 #%patch0 -p1
 %build
+perl createlinks
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -58,23 +60,23 @@ rm -rf %{name}-%{version}
 %preun
 
 %post
-if [ $1 > 1 ] ; then
-/bin/ln -fs /etc/rc5.d/S20vboxdrv /etc/rc7.d/ >/dev/null 2>&1
-/bin/ln -fs /etc/rc5.d/S35vboxautostart-service /etc/rc7.d/ >/dev/null 2>&1
-/bin/ln -fs  /etc/rc5.d/S35vboxballoonctrl-service /etc/rc7.d/ >/dev/null 2>&1
-/bin/ln -fs  /etc/rc5.d/S35vboxweb-service /etc/rc7.d/ >/dev/null 2>&1
-/bin/ln -fs /etc/rc.d/init.d/fix_vboxdrv_kernel_module /etc/rc7.d/S19fix_vboxdrv_kernel_module >/dev/null 2>&1
-fi
+#if [ $1 > 1 ] ; then
+#/bin/ln -fs /etc/rc5.d/S20vboxdrv /etc/rc7.d/ >/dev/null 2>&1
+#/bin/ln -fs /etc/rc5.d/S35vboxautostart-service /etc/rc7.d/ >/dev/null 2>&1
+#/bin/ln -fs  /etc/rc5.d/S35vboxballoonctrl-service /etc/rc7.d/ >/dev/null 2>&1
+#/bin/ln -fs  /etc/rc5.d/S35vboxweb-service /etc/rc7.d/ >/dev/null 2>&1
+#/bin/ln -fs /etc/rc.d/init.d/fix_vboxdrv_kernel_module /etc/rc7.d/S19fix_vboxdrv_kernel_module >/dev/null 2>&1
+#fi
 /usr/bin/vboxmanage setproperty websrvauthlibrary null
 %postun
 #uninstall
-if [ $1 = 0 ] ; then
-/bin/rm -rf  /etc/rc7.d/S20vboxdrv 
-/bin/rm -rf  /etc/rc7.d/S35vboxautostart-service 
-/bin/rm -rf  /etc/rc7.d/S35vboxballoonctrl-service 
-/bin/rm -rf  /etc/rc7.d/S35vboxweb-service 
-/bin/rm -rf  /etc/rc7.d/S19fix_vboxdrv_kernel_module
-fi
+#if [ $1 = 0 ] ; then
+#/bin/rm -rf  /etc/rc7.d/S20vboxdrv 
+#/bin/rm -rf  /etc/rc7.d/S35vboxautostart-service 
+#/bin/rm -rf  /etc/rc7.d/S35vboxballoonctrl-service 
+#/bin/rm -rf  /etc/rc7.d/S35vboxweb-service 
+#/bin/rm -rf  /etc/rc7.d/S19fix_vboxdrv_kernel_module
+#fi
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
 %attr(755,root,root) /etc/rc.d/init.d/fix_vboxdrv_kernel_module
